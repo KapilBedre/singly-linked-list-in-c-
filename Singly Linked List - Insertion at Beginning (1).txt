@@ -1,0 +1,54 @@
+﻿#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+struct Node {
+    int data;
+    Node* next;
+};
+
+// Function to insert a node at the beginning
+void insert(Node*& head, int value) {
+    Node* newNode = (Node*)malloc(sizeof(Node)); // Dynamically allocate memory
+    if (newNode == nullptr) {  // Check for allocation failure
+        cout << "Memory allocation failed!" << endl;
+        return;
+    }
+
+    newNode->data = value;
+    newNode->next = head;  // Point new node to current head
+    head = newNode;        // Update head to new node
+    cout << "Inserted " << value << " at the beginning." << endl;
+}
+
+// Function to display the linked list
+void display(Node* head) {
+    if (head == nullptr) {
+        cout << "List is empty." << endl;
+        return;
+    }
+
+    Node* temp = head;
+    cout << "List: ";
+    while (temp != nullptr) {
+        cout << temp->data << " ";  // Print the current node's data
+        temp = temp->next;          // Move to the next node
+    }
+    cout << endl;
+}
+
+int main() {
+    Node* head = nullptr;  // Initialize an empty list
+
+    display(head);  // Display empty list
+
+    insert(head, 10);  // Insert 10 at the beginning
+    insert(head, 20);  // Insert 20 at the beginning
+    insert(head, 30);  // Insert 30 at the beginning
+
+    display(head);  // Display the list after insertions
+
+    return 0;
+}
+
